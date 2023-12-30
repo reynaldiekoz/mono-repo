@@ -29,10 +29,9 @@ pipeline {
             steps {
                 script {
                     //  Build and tag Docker images
-                    sh """                    
-                    cd go_service && docker build -t ${APP_NAME1}:latest .
-                    cd node.js_service && docker build -t ${APP_NAME2}:latest .
-                    """
+                    sh "cd go_service && docker build -t ${APP_NAME1}:latest ."                    
+                    sh "cd node.js_service && docker build -t ${APP_NAME2}:latest ."
+                    
                     
                 }
             }
