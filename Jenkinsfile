@@ -65,8 +65,8 @@ pipeline {
                        /var/lib/jenkins/script/login.sh
                        aws eks --region ap-southeast-1 update-kubeconfig --name reynaldiekoz-eks
                        # Apply manifest
-                       kubectl apply -f kubernetes/go-service.yaml
-                       kubectl apply -f kubernetes/nodejs-service.yaml
+                       kubectl apply -f go_service/go-service.yaml
+                       kubectl apply -f node.js_service/nodejs-service.yaml
                     """
                 }
             }
