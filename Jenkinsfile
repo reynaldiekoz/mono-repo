@@ -27,13 +27,13 @@ pipeline {
             steps {
                 script {
                     // Authenticate Docker with AWS ECR && Build and tag Docker images
-                    sh ""
+                    sh """
                     ./var/lib/jenkins/script/login.sh
                     aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}                    
                     cd go_service && docker build -t ${ECR_REGISTRY}:go-service:latest .
                     cd nodejs_service && docker build -t ${ECR_REGISTRY}:nodejs-service:latest .
+                    """
                     
-                    ""
                 }
             }
         }
@@ -42,12 +42,11 @@ pipeline {
             steps {
                 script {
                     // Push Docker images to ECR
-                    sh ""
+                    sh """
                     ./var/lib/jenkins/script/login.sh
                     docker push ${ECR_REGISTRY}:go-service:latest
                     docker push ${ECR_REGISTRY}:nodejs-service:latest
-
-                    ""
+                    """
                 }
             }
         }
@@ -56,12 +55,12 @@ pipeline {
             steps {
                 script {
                     // Apply Kubernetes manifests to EKS 
-                    sh ""
+                    sh """
                        ./var/lib/jenkins/script/login.sh
                        aws eks --region ap-southeast-1 update-kubeconfig --name reynaldiekoz-eks
                        kubectl apply -f kubernetes/go-service.yaml
                        kubectl apply -f kubernetes/nodejs-service.yaml
-                    ""
+                    """
                 }
             }
         }
