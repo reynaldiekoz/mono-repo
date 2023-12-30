@@ -15,6 +15,7 @@ spec:
       containers:
       - name: node-service-container
         image: 003866745935.dkr.ecr.ap-southeast-1.amazonaws.com/reynaldiekoz:node-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 6012
 ---
