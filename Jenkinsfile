@@ -18,7 +18,7 @@ pipeline {
                 script {
                     // Add build and test steps if needed
                     sh 'cd go_service && /usr/local/go/bin/go build'
-                    sh 'cd node_service && npm install'
+                    sh 'cd node.js_service && npm install'
                 }
             }
         }
