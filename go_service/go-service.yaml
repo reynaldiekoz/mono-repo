@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: go-service-container
-        image: 003866745935.dkr.ecr.ap-southeast-1.amazonaws.com/reynaldiekoz:go-service
+        image: 003866745935.dkr.ecr.ap-southeast-1.amazonaws.com/reynaldiekoz:go-service:latest
         ports:
         - containerPort: 6011
 ---
