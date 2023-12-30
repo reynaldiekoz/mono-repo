@@ -1,22 +1,25 @@
-# Use an official Go runtime as a parent image
-FROM golang:1.16-alpine
+# === Stage 1: Build Stage ===
+FROM golang:1.19-alpine as builder
 
 # Set the working directory to /go_service
 WORKDIR /go_service
 
-# Copy the go.mod file into the container
-COPY go.mod .
-
-# Download and install dependencies
-RUN go mod download
-
-# Copy the rest of the application code
+# Copy the application code
 COPY . .
 
 # Build the Go service
-RUN go build -o go-service
+RUN CGO_ENABLED=0 GOOS=linux go build -o go-service
 
-# Expose port 6012 to the outside world
+# === Stage 2: Final Stage ===
+FROM alpine:latest
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy only the necessary files from the builder stage
+COPY --from=builder /go_service/go-service .
+
+# Expose port 6011 to the outside world
 EXPOSE 6011
 
 # Command to run the executable
