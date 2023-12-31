@@ -6,7 +6,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1 style='color: #007BFF;'>Hello from Go Service! V4</h1>")
+	fmt.Fprintf(w, "<h1 style='color: #007BFF;'>Hello from Go Service! V5</h1>")
 }
 
 func main() {
