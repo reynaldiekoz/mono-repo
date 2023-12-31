@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('<h1 style="color: #28A745;">Hello from Node.js Service! V5</h1>');
+  res.send('<h1 style="color: #28A745;">Hello from Node.js Service! V6</h1>');
 });
 
 const PORT = process.env.PORT || 6012;
