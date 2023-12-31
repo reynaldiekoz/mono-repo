@@ -69,7 +69,7 @@ pipeline {
                        kubectl apply -f node.js_service/node-service.yaml 
                        # Rollout Restart
                        kubectl rollout restart deployment go-service-deployment
-                       kubectl rollout restart deployment go-service-deployment
+                       kubectl rollout restart deployment node-service-deployment
                     """
                 }
             }
